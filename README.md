@@ -6,7 +6,7 @@
 
 A modern, secure, and decentralized ERC20 token faucet deployed on the Sepolia Ethereum test network. This application demonstrates a production-grade Web3 architecture with on-chain rate limiting and a premium user interface.
 
-**[👉 Live Demo](https://erc-20-faucet-dapp.vercel.app/)**
+**[👉 Live Demo](https://erc-20-faucet-dapp-omega.vercel.app/)**
 
 ## ✨ Key Features
 
