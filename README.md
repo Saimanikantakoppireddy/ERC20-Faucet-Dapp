@@ -3,29 +3,67 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/Status-submission%20ready-green)]()
 
-A modern, secure, and decentralized ERC20 token faucet. This repository has been updated to meet strict automated evaluation criteria, including robust smart contracts, Docker containerization, and a testable frontend interface.
+A modern, secure, and decentralized ERC20 token faucet deployed on the Sepolia Ethereum test network. This application demonstrates a production-grade Web3 architecture with on-chain rate limiting and a premium user interface.
 
-## 📋 Project Status
-- **Smart Contracts**: Fixed & Verified (Revert messages, Access Control)
-- **Tests**: Passing (11/11 scenarios)
-- **Frontend**: Implemented `window.__EVAL__` interface
-- **Docker**: Ready
+**[👉 Live Demo](https://erc-20-faucet-dapp.vercel.app/)**
 
-## 🚀 Quick Start (Docker)
+## ✨ Key Features
 
-To run the entire application using Docker:
+- **🛡️ Secure On-Chain Rate Limiting**: All cooldowns and limits are enforced directly by the smart contract.
+- **👛 Wallet Integration**: Seamless specific-network connection with MetaMask.
+- **⚡ Real-time Updates**: Live tracking of token balance, allowance, and cooldown timers.
+- **⛽ Gas Estimation**: Built-in gas cost preview before transaction submission.
+- **🎨 Premium UI**: A responsive, glassmorphism-styled interface built with React and Vite.
+- **🚫 Serverless**: No backend database; purely decentralized logic.
 
-```bash
-docker compose up --build
+## 🛠️ Technology Stack
+
+| Layer | Technologies |
+|-------|--------------|
+| **Smart Contracts** | Solidity, OpenZeppelin, Hardhat |
+| **Frontend** | React 19, Vite, Ethers.js v6, CSS3 (Glassmorphism) |
+| **Network** | Sepolia Testnet |
+| **Tools** | Vercel, Etherscan |
+
+## 🚀 Getting Started
+
+Follow these steps to run the project locally.
+
+### Prerequisites
+- Node.js (v18+)
+- MetaMask Browser Extension
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/erc20-faucet-dapp.git
+   cd erc20-faucet-dapp
+   ```
+
+2. **Install Root Dependencies (Hardhat)**
+   ```bash
+   npm install
+   ```
+
+3. **Install Frontend Dependencies**
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+### Configuration (Frontend)
+
+Create a `.env` file in the `frontend` directory:
+
+```env
+VITE_TOKEN_ADDRESS=0xYourTokenContractAddress
+VITE_FAUCET_ADDRESS=0xYourFaucetContractAddress
 ```
 
-- **Frontend**: http://localhost:3000
-- **Health Check**: `curl http://localhost:3000/health` (Returns 200 OK)
+### Running Locally
 
-## 🧪 Verification Steps
-
-### 1. Automated Tests (Smart Contracts)
-Run the Hardhat test suite to verify contract logic:
+To start the frontend application:
 
 ```bash
 npx hardhat test
