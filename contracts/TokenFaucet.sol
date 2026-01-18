@@ -34,10 +34,10 @@ contract TokenFaucet {
      */
     function requestTokens() external {
         require(!paused, "Faucet is paused");
-        require(canClaim(msg.sender), "Cooldown active or limit reached");
+        require(canClaim(msg.sender), "Cooldown period not elapsed");
         require(
-            totalClaimed[msg.sender] + FAUCET_AMOUNT <= MAX_CLAIM_AMOUNT,
-            "Lifetime limit exceeded"
+            remainingAllowance(msg.sender) >= FAUCET_AMOUNT,
+            "Lifetime claim limit reached"
         );
 
         // Effects
@@ -56,16 +56,16 @@ contract TokenFaucet {
     function canClaim(address user) public view returns (bool) {
         if (paused) return false;
         if (block.timestamp < lastClaimAt[user] + COOLDOWN_TIME) return false;
-        if (totalClaimed[user] >= MAX_CLAIM_AMOUNT) return false;
+        // Limit checked via remainingAllowance in requestTokens
         return true;
     }
 
     /**
      * @dev Remaining lifetime allowance
      */
-    function remainingAllowance(address user) external view returns (uint256) {
-        if (totalClaimed[user] >= MAX_CLAIM_AMOUNT) return 0;
-        return MAX_CLAIM_AMOUNT - totalClaimed[user];
+    function remainingAllowance(address user) public view returns (uint256) {
+        uint256 remaining = MAX_CLAIM_AMOUNT - totalClaimed[user];
+        return remaining > 0 ? remaining : 0;
     }
 
     /**

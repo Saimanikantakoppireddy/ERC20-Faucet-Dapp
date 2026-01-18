@@ -12,7 +12,9 @@ contract FaucetToken is ERC20, Ownable {
     uint256 public constant MAX_SUPPLY = 1_000_000 * 1e18;
     address public faucet;
 
-    constructor() ERC20("Faucet Token", "FTK") Ownable(msg.sender) {}
+    constructor(address _initialFaucet) ERC20("Faucet Token", "FTK") Ownable(msg.sender) {
+        faucet = _initialFaucet;
+    }
 
     /**
      * @dev Set the faucet address (only owner / deployer)
